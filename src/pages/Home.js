@@ -1,10 +1,6 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import MainPageLayout from '../components/MainPageLayout';
 
-const Home = () => (
-  <Route exact path="/">
-    This is home page
-  </Route>
-);
+const Home = () => <MainPageLayout>This is home page</MainPageLayout>;
 
 export default Home;

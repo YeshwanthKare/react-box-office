@@ -1,6 +1,6 @@
 import React from 'react';
-// import { Route } from 'react-router-dom';
+import MainPageLayout from '../components/MainPageLayout';
 
-const Starred = () => <div>This is starred Page</div>;
+const Starred = () => <MainPageLayout>This is starred Page</MainPageLayout>;
 
 export default Starred;
