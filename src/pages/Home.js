@@ -14,8 +14,6 @@ const Home = () => {
       .then(r => setResults(r));
   };
 
-  console.log(results);
-
   const onKeyCode = e => {
     if (e.keyCode === 13) {
       onSearch();
