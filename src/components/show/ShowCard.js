@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SearchCard } from './ShowCard.Styled';
 
 const ShowCard = ({ name, image, id, summary }) => {
   const summaryAsText = summary
     ? `${summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '')}...`
     : 'No description';
   return (
-    <div>
-      <div>
+    <SearchCard>
+      <div className="img-wrapper">
         <img src={image} alt="show" />
       </div>
 
@@ -19,7 +20,7 @@ const ShowCard = ({ name, image, id, summary }) => {
         <Link to={`/show/${id}`}>Read more</Link>
         <button type="button">Star me</button>
       </div>
-    </div>
+    </SearchCard>
   );
 };
 
