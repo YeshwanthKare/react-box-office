@@ -1,12 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router';
 import { getURL } from '../misc/config';
 
+const initialState = {
+  show: null,
+  error: null,
+  isLoading: true,
+};
+
+const reducer = (prevState, action) => {
+  switch (action) {
+    case 'FETCH_SUCCESS': {
+      return { error: null, show: action.show, isLoading: false };
+    }
+
+    case 'FETCH_FAILED': {
+      return { error: action.error, show: null, isLoading: false };
+    }
+
+    default:
+      return prevState;
+  }
+};
+
 const Show = () => {
   const { id } = useParams();
-  const [show, setShow] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  console.log(state);
 
   useEffect(() => {
     let isMounted = true;
@@ -15,14 +37,12 @@ const Show = () => {
       .then(r => r.json())
       .then(res => {
         if (isMounted) {
-          setShow(res);
-          setIsLoading(false);
+          dispatch({ type: 'FETCH_SUCCESS', show: res });
         }
       })
       .catch(err => {
         if (isMounted) {
-          setError(err.message);
-          setIsLoading(false);
+          dispatch({ type: 'FETCH_FAILED', error: err.message });
         }
       });
 
@@ -31,15 +51,15 @@ const Show = () => {
     };
   }, [id]);
 
-  console.log(show);
+  // console.log(show);
 
-  if (isLoading) {
-    return <div>The page is being loaded</div>;
-  }
+  // if (isLoading) {
+  //   return <div>The page is being loaded</div>;
+  // }
 
-  if (error) {
-    return <div>error occured: {error}</div>;
-  }
+  // if (error) {
+  //   return <div>error occured: {error}</div>;
+  // }
 
   return <div>this is show page</div>;
 };
