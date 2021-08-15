@@ -1,15 +1,14 @@
 import React, { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router';
+import Cast from '../components/show/Cast';
+import Details from '../components/show/Details';
+import Seasons from '../components/show/Seasons';
+import ShowMainData from '../components/show/ShowMainData';
 import { getURL } from '../misc/config';
-
-const initialState = {
-  show: null,
-  error: null,
-  isLoading: true,
-};
+import { InfoBlock, ShowPageWrapper } from './Show.styled';
 
 const reducer = (prevState, action) => {
-  switch (action) {
+  switch (action.type) {
     case 'FETCH_SUCCESS': {
       return { error: null, show: action.show, isLoading: false };
     }
@@ -23,12 +22,19 @@ const reducer = (prevState, action) => {
   }
 };
 
+const initialState = {
+  show: null,
+  error: null,
+  isLoading: true,
+};
+
 const Show = () => {
   const { id } = useParams();
 
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  console.log(state);
+  const [{ show, error, isLoading }, dispatch] = useReducer(
+    reducer,
+    initialState
+  );
 
   useEffect(() => {
     let isMounted = true;
@@ -51,17 +57,46 @@ const Show = () => {
     };
   }, [id]);
 
-  // console.log(show);
+  console.log(show);
 
-  // if (isLoading) {
-  //   return <div>The page is being loaded</div>;
-  // }
+  if (isLoading) {
+    return <div>The page is being loaded</div>;
+  }
 
-  // if (error) {
-  //   return <div>error occured: {error}</div>;
-  // }
+  if (error) {
+    return <div>error occured: {error}</div>;
+  }
 
-  return <div>this is show page</div>;
+  return (
+    <ShowPageWrapper>
+      <ShowMainData
+        image={show.image}
+        name={show.name}
+        rating={show.rating}
+        summary={show.summary}
+        tags={show.genres}
+      />
+
+      <InfoBlock>
+        <h2>Details</h2>
+        <Details
+          status={show.status}
+          network={show.network}
+          premiered={show.premiered}
+        />
+      </InfoBlock>
+
+      <div>
+        <h2>Seasons</h2>
+        <Seasons seasons={show._embedded.seasons} />
+      </div>
+
+      <div>
+        <h2>Cast</h2>
+        <Cast cast={show._embedded.cast} />
+      </div>
+    </ShowPageWrapper>
+  );
 };
 
 export default Show;
