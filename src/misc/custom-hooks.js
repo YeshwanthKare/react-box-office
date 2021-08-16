@@ -13,6 +13,8 @@ function showsReducer(prevState, action) {
 	]
       
     }
+
+    default: return prevState
   
 }
 
