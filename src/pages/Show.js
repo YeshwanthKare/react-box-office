@@ -57,8 +57,6 @@ const Show = () => {
     };
   }, [id]);
 
-  console.log(show);
-
   if (isLoading) {
     return <div>The page is being loaded</div>;
   }

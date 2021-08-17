@@ -6,23 +6,19 @@ function showsReducer(prevState, action) {
       return [...prevState, action.showId];
     }
     case 'REMOVE': {
-      return [
-        prevState.filter(showId => {
-          return showId !== action.showId;
-        }),
-	]
-      
+      return prevState.filter(showId => showId !== action.showId);
     }
 
-    default: return prevState
-  
+    default:
+      return prevState;
+  }
 }
 
 function usePersistedReducer(reducer, initialState, key) {
   const [state, dispatch] = useReducer(reducer, initialState, initial => {
     const persisted = localStorage.getItem(key);
 
-    return persisted ? JSON.parse(key) : initial;
+    return persisted ? JSON.parse(persisted) : initial;
   });
 
   useEffect(() => {
@@ -32,6 +28,6 @@ function usePersistedReducer(reducer, initialState, key) {
   return [state, dispatch];
 }
 
-export function useShows (key = "shows"){
- return usePersistedReducer(showsReducer, [],key)
+export function useShows(key = 'shows') {
+  return usePersistedReducer(showsReducer, [], key);
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Star } from '../styled';
 import { SearchCard } from './ShowCard.Styled';
 
-const ShowCard = ({ name, image, id, summary }) => {
+const ShowCard = ({ name, image, id, summary, onClickStar, isStarred }) => {
   const summaryAsText = summary
     ? `${summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '')}...`
     : 'No description';
@@ -18,7 +19,9 @@ const ShowCard = ({ name, image, id, summary }) => {
 
       <div>
         <Link to={`/show/${id}`}>Read more</Link>
-        <button type="button">Star me</button>
+        <button type="button" onClick={onClickStar}>
+          <Star active={isStarred} />
+        </button>
       </div>
     </SearchCard>
   );
