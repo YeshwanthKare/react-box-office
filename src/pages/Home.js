@@ -4,6 +4,12 @@ import ShowGrid from '../components/show/ShowGrid';
 import ActorGrid from '../components/actor/ActorGrid';
 import { getURL } from '../misc/config';
 import { useLastQuery } from '../misc/custom-hooks';
+import {
+  RadioInputsWrapper,
+  SearchButtonWrapper,
+  SearchInput,
+} from './Home.styled';
+import CustomRadio from '../components/CustomRadio';
 
 const Home = () => {
   const [input, setInput] = useLastQuery();
@@ -45,38 +51,41 @@ const Home = () => {
   };
   return (
     <MainPageLayout>
-      <input
+      <SearchInput
         type="text"
         onChange={onChnageKey}
         placeholder="Search for something"
         onKeyDown={onKeyCode}
       />
+      <RadioInputsWrapper>
+        <div>
+          <CustomRadio
+            label="Shows"
+            id="show-search"
+            type="radio"
+            value="shows"
+            checked={isShowSearch}
+            onChange={changeRadioInput}
+          />
+        </div>
 
-      <label htmlFor="show-search">
-        Shows
-        <input
-          id="show-search"
-          type="radio"
-          value="shows"
-          checked={isShowSearch}
-          onChange={changeRadioInput}
-        />
-      </label>
+        <div>
+          <CustomRadio
+            label="Actors"
+            id="actor-search"
+            type="radio"
+            value="people"
+            checked={!isShowSearch}
+            onChange={changeRadioInput}
+          />
+        </div>
+      </RadioInputsWrapper>
 
-      <label htmlFor="actor-search">
-        Actors
-        <input
-          id="actor-search"
-          type="radio"
-          value="people"
-          checked={!isShowSearch}
-          onChange={changeRadioInput}
-        />
-      </label>
-
-      <button type="button" disabled={!input} onClick={onSearch}>
-        Search
-      </button>
+      <SearchButtonWrapper>
+        <button type="button" disabled={!input} onClick={onSearch}>
+          Search
+        </button>
+      </SearchButtonWrapper>
       {renderResults()}
     </MainPageLayout>
   );
