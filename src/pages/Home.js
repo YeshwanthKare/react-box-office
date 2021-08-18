@@ -11,9 +11,7 @@ const Home = () => {
   const isShowSearch = searchOption === 'shows';
 
   const onSearch = () => {
-    getURL(`/search/${searchOption}?q=${input}`)
-      .then(r => r.json())
-      .then(r => setResults(r));
+    getURL(`/search/${searchOption}?q=${input}`).then(r => setResults(r));
   };
 
   const onKeyCode = e => {

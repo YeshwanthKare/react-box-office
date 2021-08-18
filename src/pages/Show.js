@@ -40,7 +40,6 @@ const Show = () => {
     let isMounted = true;
 
     getURL(`/shows/${id}?embed[]=seasons&embed[]=cast`)
-      .then(r => r.json())
       .then(res => {
         if (isMounted) {
           dispatch({ type: 'FETCH_SUCCESS', show: res });
