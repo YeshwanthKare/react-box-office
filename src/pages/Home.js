@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import MainPageLayout from '../components/MainPageLayout';
 import ShowGrid from '../components/show/ShowGrid';
 import ActorGrid from '../components/actor/ActorGrid';
@@ -10,6 +10,21 @@ import {
   SearchInput,
 } from './Home.styled';
 import CustomRadio from '../components/CustomRadio';
+
+const renderResults = results => {
+  if (results && results.length === 0) {
+    return <div>No Results</div>;
+  }
+  if (results && results.length > 0) {
+    const cardResult = results[0].show ? (
+      <ShowGrid data={results} />
+    ) : (
+      <ActorGrid data={results} />
+    );
+    return cardResult;
+  }
+  return null;
+};
 
 const Home = () => {
   const [input, setInput] = useLastQuery();
@@ -27,28 +42,17 @@ const Home = () => {
     }
   };
 
-  const renderResults = () => {
-    if (results && results.length === 0) {
-      return <div>No Results</div>;
-    }
-    if (results && results.length > 0) {
-      const cardResult = results[0].show ? (
-        <ShowGrid data={results} />
-      ) : (
-        <ActorGrid data={results} />
-      );
-      return cardResult;
-    }
-    return null;
-  };
-
-  const changeRadioInput = e => {
+  const changeRadioInput = useCallback(e => {
     setSearchOption(e.target.value);
-  };
+  }, []);
 
-  const onChnageKey = e => {
-    setInput(e.target.value);
-  };
+  const onChnageKey = useCallback(
+    e => {
+      setInput(e.target.value);
+    },
+    [setInput]
+  );
+
   return (
     <MainPageLayout>
       <SearchInput
@@ -86,7 +90,7 @@ const Home = () => {
           Search
         </button>
       </SearchButtonWrapper>
-      {renderResults()}
+      {renderResults(results)}
     </MainPageLayout>
   );
 };
