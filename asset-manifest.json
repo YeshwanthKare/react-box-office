@@ -1,20 +1,22 @@
 {
   "files": {
     "main.css": "/react-box-office/static/css/main.5fffadb5.chunk.css",
-    "main.js": "/react-box-office/static/js/main.49ba23e7.chunk.js",
-    "main.js.map": "/react-box-office/static/js/main.49ba23e7.chunk.js.map",
-    "runtime-main.js": "/react-box-office/static/js/runtime-main.48c6ea78.js",
-    "runtime-main.js.map": "/react-box-office/static/js/runtime-main.48c6ea78.js.map",
+    "main.js": "/react-box-office/static/js/main.2a1ccda8.chunk.js",
+    "main.js.map": "/react-box-office/static/js/main.2a1ccda8.chunk.js.map",
+    "runtime-main.js": "/react-box-office/static/js/runtime-main.db85c6a8.js",
+    "runtime-main.js.map": "/react-box-office/static/js/runtime-main.db85c6a8.js.map",
     "static/js/2.d0f24341.chunk.js": "/react-box-office/static/js/2.d0f24341.chunk.js",
     "static/js/2.d0f24341.chunk.js.map": "/react-box-office/static/js/2.d0f24341.chunk.js.map",
+    "static/js/3.8f2b0462.chunk.js": "/react-box-office/static/js/3.8f2b0462.chunk.js",
+    "static/js/3.8f2b0462.chunk.js.map": "/react-box-office/static/js/3.8f2b0462.chunk.js.map",
     "index.html": "/react-box-office/index.html",
     "static/css/main.5fffadb5.chunk.css.map": "/react-box-office/static/css/main.5fffadb5.chunk.css.map",
     "static/js/2.d0f24341.chunk.js.LICENSE.txt": "/react-box-office/static/js/2.d0f24341.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.48c6ea78.js",
+    "static/js/runtime-main.db85c6a8.js",
     "static/js/2.d0f24341.chunk.js",
     "static/css/main.5fffadb5.chunk.css",
-    "static/js/main.49ba23e7.chunk.js"
+    "static/js/main.2a1ccda8.chunk.js"
   ]
 }
